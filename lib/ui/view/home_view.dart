@@ -8,6 +8,11 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<HomeViewModel>(
-        builder: (context, model, child) => const Scaffold());
+      builder: (context, model, child) => const Scaffold(
+        body: Center(
+          child: Text('Home Page'),
+        ),
+      ),
+    );
   }
 }

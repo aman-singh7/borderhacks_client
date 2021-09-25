@@ -59,9 +59,9 @@ class AuthView extends StatelessWidget {
                         passwordController: model.passwordController),
                     const SizedBox(height: 20),
                     PrimaryButton(
-                      press: () {
+                      press: () async {
                         FocusScope.of(context).unfocus();
-                        model.formKey.currentState!.validate() ? null : null;
+                        await model.authenticate(title);
                       },
                       text: title,
                       isFilled: true,
