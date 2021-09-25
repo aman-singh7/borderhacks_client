@@ -1,7 +1,6 @@
 import 'package:borderhacks_client/locator.dart';
 import 'package:borderhacks_client/ui/view/home_view.dart';
-import 'package:borderhacks_client/ui/view/login_view.dart';
-import 'package:borderhacks_client/ui/view/signup_view.dart';
+import 'package:borderhacks_client/ui/view/auth_view.dart';
 import 'package:borderhacks_client/ui/view/startup_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +23,14 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => const StartUpView()),
-        GetPage(name: '/login', page: () => const LoginView()),
-        GetPage(name: '/signup', page: () => const SignupView()),
+        GetPage(
+          name: '/login',
+          page: () => const AuthView('Log in', 'Sign Up'),
+        ),
+        GetPage(
+          name: '/signup',
+          page: () => const AuthView('Sign Up', 'Log In'),
+        ),
         GetPage(name: '/home', page: () => const HomeView()),
       ],
       home: const StartUpView(),
