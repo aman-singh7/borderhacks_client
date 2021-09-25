@@ -1,6 +1,6 @@
+import 'app_theme.dart';
 import 'package:borderhacks_client/locator.dart';
 import 'package:borderhacks_client/ui/view/landing_view.dart';
-import 'app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

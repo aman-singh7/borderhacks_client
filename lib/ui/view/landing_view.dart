@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'base_view.dart';
+import 'package:borderhacks_client/app_theme.dart';
 import 'package:borderhacks_client/ui/components/bottom_appbar.dart';
-import 'package:borderhacks_client/ui/components/search_field.dart';
 import 'package:borderhacks_client/ui/components/doctor_tile.dart';
+import 'package:borderhacks_client/ui/components/search_field.dart';
 import 'package:borderhacks_client/ui/view/myappointment_view.dart';
 import 'package:borderhacks_client/viewmodels/landing_viewmodel.dart';
-import 'package:borderhacks_client/app_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LandingView extends StatefulWidget {
   @override
