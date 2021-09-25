@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class BottomAppbar extends StatefulWidget {
+  const BottomAppbar({Key? key}) : super(key: key);
+
   @override
   _BottomAppbarState createState() => _BottomAppbarState();
 }

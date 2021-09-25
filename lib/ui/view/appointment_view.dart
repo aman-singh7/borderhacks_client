@@ -1,4 +1,3 @@
-import 'base_view.dart';
 import 'package:borderhacks_client/app_theme.dart';
 import 'package:borderhacks_client/models/doctor_model.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class AppointmentView extends StatefulWidget {
+  const AppointmentView({Key? key}) : super(key: key);
+
   @override
   _AppointmentViewState createState() => _AppointmentViewState();
 }
@@ -17,7 +18,7 @@ class _AppointmentViewState extends State<AppointmentView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppTheme.blue,
-        title: Text('Details'),
+        title: const Text('Details'),
       ),
       body: SafeArea(
         child: Padding(
@@ -39,7 +40,7 @@ class _AppointmentViewState extends State<AppointmentView> {
                       CircleAvatar(
                         radius: 60.r,
                         backgroundImage:
-                            AssetImage('assets/images/default.png'),
+                            const AssetImage('assets/images/default.png'),
                         backgroundColor: Colors.transparent,
                       ),
                       Text(

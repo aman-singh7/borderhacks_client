@@ -1,3 +1,5 @@
+import 'package:borderhacks_client/ui/view/appointment_view.dart';
+
 import 'app_theme.dart';
 import 'package:borderhacks_client/locator.dart';
 import 'package:borderhacks_client/ui/view/landing_view.dart';
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(360, 592),
+      designSize: const Size(360, 592),
       builder: () {
         //For easy navigation.
         return GetMaterialApp(
@@ -40,7 +42,8 @@ class MyApp extends StatelessWidget {
               page: () => const AuthView('Sign Up', 'Log In'),
             ),
             GetPage(name: '/home', page: () => const HomeView()),
-            GetPage(name: '/landing', page: () => LandingView()),
+            GetPage(name: '/landing', page: () => const LandingView()),
+            GetPage(name: '/appointment', page: () => const AppointmentView()),
           ],
           initialRoute: '/',
           theme: ThemeData(
