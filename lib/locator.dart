@@ -1,3 +1,4 @@
+import 'package:borderhacks_client/services/firebase_auth_service.dart';
 import 'package:borderhacks_client/services/local_storage_service.dart';
 import 'package:borderhacks_client/viewmodels/home_viewmodel.dart';
 import 'package:borderhacks_client/viewmodels/landing_viewmodel.dart';
@@ -16,6 +17,7 @@ Future<void> setupLocator() async {
   locator.registerSingleton<FirebaseAuth>(_firebaseAuth);
   var _firebaseFirestore = FirebaseFirestore.instance;
   locator.registerSingleton<FirebaseFirestore>(_firebaseFirestore);
+  locator.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
 
   locator.registerFactory(() => StartUpViewModel());
   locator.registerFactory(() => AuthViewModel());
