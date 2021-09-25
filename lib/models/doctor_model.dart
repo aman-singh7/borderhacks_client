@@ -1,18 +1,18 @@
 class Doctor {
+  String appointmentFee;
+  String clinicAddress;
+  String clinicTime;
   String name;
   String qualifications;
   String specialization;
-  String clinicAddress;
-  String appointmentFee;
-  String clinicTime;
 
   Doctor({
+    required this.appointmentFee,
+    required this.clinicAddress,
+    required this.clinicTime,
     required this.name,
     required this.qualifications,
     required this.specialization,
-    required this.clinicAddress,
-    required this.appointmentFee,
-    required this.clinicTime,
   });
 }
 /*
