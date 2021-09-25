@@ -18,22 +18,24 @@ class Doctor {
 /*
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
+      appointmentFee: json['appointmentFee'],
+      clinicAddress: json['clinicAddress'],
+      clinicTime: json['clinicTime'],
       name: json['name'],
       qualifications: json['qualifications'],
       specialization: json['specialization'],
-      clinicAddress: json['clinicAddress'],
-      appointmentFee: json['appointmentFee'],
-      clinicTime: json['clinicTime'],
+     
     );
   }
   Map<String, dynamic> toJson() {
     return {
+      'appointmentFee': appointmentFee,
+      'clinicAddress': clinicAddress,
+      'clinicTime': clinicTime,
       'name': name,
       'qualifications': qualifications,
       'specialization': specialization,
-      'clinicAddress': clinicAddress,
-      'appointmentFee': appointmentFee,
-      'clinicTime': clinicTime,
+     
     };
   }
 }
