@@ -23,8 +23,7 @@ class Doctor {
       clinicTime: json['clinicTime'],
       name: json['name'],
       qualifications: json['qualifications'],
-      specialization: json['specialization'],
-     
+      specialization: json['specialization'], 
     );
   }
   Map<String, dynamic> toJson() {
@@ -35,7 +34,6 @@ class Doctor {
       'name': name,
       'qualifications': qualifications,
       'specialization': specialization,
-     
     };
   }
 }
