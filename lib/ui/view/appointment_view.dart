@@ -1,5 +1,7 @@
+import 'base_view.dart';
 import 'package:borderhacks_client/app_theme.dart';
 import 'package:borderhacks_client/models/doctor_model.dart';
+import 'package:borderhacks_client/viewmodels/landing_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,104 +14,113 @@ class AppointmentView extends StatefulWidget {
 }
 
 class _AppointmentViewState extends State<AppointmentView> {
+  Widget _buildCoverImage() {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/doctor-background.jpg'),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProfileImage(String name, String qual, String spec) {
+    return Positioned(
+      bottom: -106.h,
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 60.r,
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+              radius: 58.r,
+              backgroundImage: const AssetImage('assets/images/default.png'),
+            ),
+          ),
+          Text(
+            name,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            qual,
+            style: const TextStyle(fontSize: 18),
+          ),
+          Text(
+            spec,
+            style: const TextStyle(fontSize: 18),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHeader(String name, String qual, String spec) {
+    return Stack(
+      alignment: Alignment.center,
+      clipBehavior: Clip.none,
+      children: [
+        _buildCoverImage(),
+        _buildProfileImage(name, qual, spec),
+      ],
+    );
+  }
+
+  Widget _buildInfo(IconData leading, String field, String value) {
+    return ListTile(
+      leading: Icon(
+        leading,
+        color: AppTheme.blue,
+      ),
+      title: Text('$field : $value'),
+    );
+  }
+
+  Widget _buildProfileInfo(String address, String time, String fee) {
+    return ListView(
+      children: [
+        _buildInfo(Icons.timer, 'Timing', time),
+        _buildInfo(Icons.money, 'Appointment fees', fee),
+        _buildInfo(Icons.location_city, 'Address', address),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final Doctor doctor = Get.arguments;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppTheme.blue,
-        title: const Text('Details'),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding:
-              EdgeInsets.only(left: 10.w, top: 10.h, bottom: 10.h, right: 10.w),
-          child: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppTheme.black),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 60.r,
-                        backgroundImage:
-                            const AssetImage('assets/images/default.png'),
-                        backgroundColor: Colors.transparent,
-                      ),
-                      Text(
-                        'Name- ${doctor.name}',
-                        style: AppTheme.h2.copyWith(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                          color: AppTheme.darkerBlue,
-                        ),
-                      ),
-                      Text(
-                        'Qualifications- ${doctor.qualifications}',
-                        style: AppTheme.h2.copyWith(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                          color: AppTheme.darkerBlue,
-                        ),
-                      ),
-                      Text(
-                        'Specialization- ${doctor.specialization}',
-                        style: AppTheme.h2.copyWith(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                          color: AppTheme.darkerBlue,
-                        ),
-                      ),
-                      Text(
-                        'Clinic Address- ${doctor.clinicAddress}',
-                        style: AppTheme.h2.copyWith(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                          color: AppTheme.darkerBlue,
-                        ),
-                      ),
-                      Text(
-                        'Clinic Time- ${doctor.clinicTime}',
-                        style: AppTheme.h2.copyWith(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                          color: AppTheme.darkerBlue,
-                        ),
-                      ),
-                      Text(
-                        'Appointment Fees- ${doctor.appointmentFee}',
-                        style: AppTheme.h2.copyWith(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                          color: AppTheme.darkerBlue,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+    return BaseView<LandingViewModel>(
+      builder: (context, model, child) => Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: _buildHeader(
+                  doctor.name, doctor.qualifications, doctor.specialization),
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                margin: EdgeInsets.only(top: 120.h),
+                child: _buildProfileInfo(doctor.clinicAddress,
+                    doctor.clinicTime, doctor.appointmentFee),
               ),
-              SizedBox(
-                height: 50.h,
-              ),
-              MaterialButton(
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 50.h),
+              child: ElevatedButton(
                 onPressed: () {},
                 child: Text(
                   'Book Appointment',
                   style: AppTheme.h2.copyWith(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
+                    color: Colors.black,
                   ),
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
