@@ -1,12 +1,14 @@
+import 'package:borderhacks_client/locator.dart';
+import 'package:borderhacks_client/models/doctor_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'base_view.dart';
 import 'package:borderhacks_client/app_theme.dart';
 import 'package:borderhacks_client/ui/components/bottom_appbar.dart';
 import 'package:borderhacks_client/ui/components/doctor_tile.dart';
-import 'package:borderhacks_client/ui/components/search_field.dart';
 import 'package:borderhacks_client/ui/view/myappointment_view.dart';
 import 'package:borderhacks_client/viewmodels/landing_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LandingView extends StatefulWidget {
   const LandingView({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class LandingView extends StatefulWidget {
 }
 
 class _LandingViewState extends State<LandingView> {
+  final _firestore = locator<FirebaseFirestore>();
   @override
   Widget build(BuildContext context) {
     return BaseView<LandingViewModel>(builder: (context, model, child) {
@@ -51,21 +54,34 @@ class _LandingViewState extends State<LandingView> {
     }
 
     //ELSE
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-      child: Column(
-        children: [
-          const SearchField(),
-          ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(vertical: 8.h),
-            children: List<Widget>.generate(
-              2,
-              (_) => DoctorTile(model.getDummyData()),
-            ),
-          ),
-        ],
-      ),
+    return StreamBuilder(
+      stream: _firestore.collection('Doctors').snapshots(),
+      builder: (context,
+          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasData && snapshot.data != null) {
+          return ListView.builder(
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (context, index) {
+              return DoctorTile(Doctor(
+                id: snapshot.data!.docs[index].id,
+                name: snapshot.data!.docs[index]['name'],
+                clinicAddress: snapshot.data!.docs[index]['address'],
+                clinicTime: snapshot.data!.docs[index]['timing'],
+                appointmentFee: snapshot.data!.docs[index]['fee'],
+                qualifications: snapshot.data!.docs[index]['qualification'],
+                specialization: snapshot.data!.docs[index]['specialization'],
+              ));
+            },
+          );
+        }
+        return const Center(
+          child: Text('There is no doctor list avaliable at this moment'),
+        );
+      },
     );
   }
 }
