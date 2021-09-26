@@ -39,6 +39,14 @@ class AppointmentTile extends StatelessWidget {
                     color: AppTheme.darkerBlue,
                   ),
                 ),
+                Text(
+                  patient.appointmentDate,
+                  style: AppTheme.h3.copyWith(
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w500,
+                    color: AppTheme.darkerBlue,
+                  ),
+                ),
               ],
             ),
             Column(
@@ -46,8 +54,7 @@ class AppointmentTile extends StatelessWidget {
               children: [
                 Text(
                   patient.doctorName,
-                  style: AppTheme.h4.copyWith(
-                    fontSize: 12.sp,
+                  style: AppTheme.h3.copyWith(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
                     color: AppTheme.darkerBlue,
@@ -55,8 +62,7 @@ class AppointmentTile extends StatelessWidget {
                 ),
                 Text(
                   patient.clinicAddress,
-                  style: AppTheme.h4.copyWith(
-                    fontSize: 12.sp,
+                  style: AppTheme.h3.copyWith(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
                     color: AppTheme.darkerBlue,
