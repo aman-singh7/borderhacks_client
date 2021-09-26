@@ -64,6 +64,6 @@ class AppTheme {
   ///Decorations
   static OutlineInputBorder transparentOutlineBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(8),
-    borderSide: BorderSide(color: Colors.transparent),
+    borderSide: const BorderSide(color: Colors.transparent),
   );
 }

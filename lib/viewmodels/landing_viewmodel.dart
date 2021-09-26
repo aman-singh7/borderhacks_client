@@ -1,5 +1,3 @@
-import 'package:borderhacks_client/enums/view_state.dart';
-import 'package:borderhacks_client/locator.dart';
 import 'package:borderhacks_client/models/doctor_model.dart';
 import 'package:borderhacks_client/viewmodels/base_viewmodel.dart';
 

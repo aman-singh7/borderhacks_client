@@ -1,6 +1,5 @@
 import 'package:borderhacks_client/app_theme.dart';
 import 'package:borderhacks_client/models/doctor_model.dart';
-import 'package:borderhacks_client/ui/view/appointment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,13 +7,13 @@ import 'package:get/get.dart';
 class DoctorTile extends StatelessWidget {
   final Doctor doctor;
 
-  DoctorTile(this.doctor);
+  const DoctorTile(this.doctor, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(AppointmentView(), arguments: doctor);
+        Get.toNamed('/appointment', arguments: doctor);
       },
       child: Card(
         color: AppTheme.white,
@@ -27,7 +26,7 @@ class DoctorTile extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 30.r,
-                backgroundImage: AssetImage('assets/images/default.png'),
+                backgroundImage: const AssetImage('assets/images/default.png'),
                 backgroundColor: Colors.transparent,
               ),
               SizedBox(

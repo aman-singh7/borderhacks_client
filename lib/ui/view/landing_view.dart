@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LandingView extends StatefulWidget {
+  const LandingView({Key? key}) : super(key: key);
+
   @override
   _LandingViewState createState() => _LandingViewState();
 }
@@ -20,22 +22,23 @@ class _LandingViewState extends State<LandingView> {
       return Scaffold(
         appBar: _buildAppBar(model),
         body: _buildBody(model),
-        bottomNavigationBar: BottomAppbar(),
+        bottomNavigationBar: const BottomAppbar(),
       );
     });
   }
 
   AppBar _buildAppBar(LandingViewModel model) {
     return AppBar(
-      title:
-          (model.selectedIndex == 1) ? Text('My Appointments') : Text('Home'),
+      title: (model.selectedIndex == 1)
+          ? const Text('My Appointments')
+          : const Text('Home'),
       backgroundColor: AppTheme.blue,
     );
   }
 
   Widget _buildBody(LandingViewModel model) {
     if (model.selectedIndex == 1) {
-      return MyAppointmentView();
+      return const MyAppointmentView();
     }
 
     //ELSE
@@ -43,7 +46,7 @@ class _LandingViewState extends State<LandingView> {
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
       child: Column(
         children: [
-          SearchField(),
+          const SearchField(),
           ListView(
             shrinkWrap: true,
             padding: EdgeInsets.symmetric(vertical: 8.h),

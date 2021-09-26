@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchField extends StatelessWidget {
+  const SearchField({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 40.h,
       child: Card(
@@ -26,7 +28,7 @@ class SearchField extends StatelessWidget {
               color: AppTheme.darkerBlue,
             ),
             suffixIcon: IconButton(
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
               onPressed: () {},
             ),
           ),

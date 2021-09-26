@@ -1,10 +1,10 @@
 class Doctor {
-  String appointmentFee;
-  String clinicAddress;
-  String clinicTime;
-  String name;
-  String qualifications;
-  String specialization;
+  String appointmentFee,
+      clinicAddress,
+      clinicTime,
+      name,
+      qualifications,
+      specialization;
 
   Doctor({
     required this.appointmentFee,
