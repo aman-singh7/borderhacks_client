@@ -11,7 +11,7 @@ class StartUpViewModel extends BaseViewModel {
       const Duration(seconds: 2),
     );
     await Get.offAllNamed(
-      localStorageService.isLoggedIn ? '/home' : '/login',
+      localStorageService.isLoggedIn ? '/landing' : '/login',
     );
   }
 }

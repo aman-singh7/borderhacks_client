@@ -1,5 +1,6 @@
 import 'package:borderhacks_client/locator.dart';
 import 'package:borderhacks_client/services/firebase_auth_service.dart';
+import 'package:borderhacks_client/services/local_storage_service.dart';
 import 'package:borderhacks_client/viewmodels/base_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,8 @@ import 'package:get/get.dart';
 class AuthViewModel extends BaseViewModel {
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuthService _authService = locator<FirebaseAuthService>();
+  final LocalStorageService _localStorageService =
+      locator<LocalStorageService>();
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late String _path;
@@ -21,21 +24,27 @@ class AuthViewModel extends BaseViewModel {
       if (title == 'Log in') {
         _authService
             .signIn(
-              _emailController.text.trim(),
-              _passwordController.text.trim(),
-            )
+          _emailController.text.trim(),
+          _passwordController.text.trim(),
+        )
             .then(
-              (value) => Get.offAndToNamed('/home'),
-            );
+          (value) {
+            _localStorageService.isLoggedIn = true;
+            Get.offAndToNamed('/landing');
+          },
+        );
       } else {
         _authService
             .signUp(
-              _emailController.text.trim(),
-              _passwordController.text.trim(),
-            )
+          _emailController.text.trim(),
+          _passwordController.text.trim(),
+        )
             .then(
-              (value) => Get.offAndToNamed('/home'),
-            );
+          (value) {
+            _localStorageService.isLoggedIn = true;
+            Get.offAndToNamed('/landing');
+          },
+        );
       }
     }
   }

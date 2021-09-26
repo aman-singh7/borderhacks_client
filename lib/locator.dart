@@ -1,6 +1,5 @@
 import 'package:borderhacks_client/services/firebase_auth_service.dart';
 import 'package:borderhacks_client/services/local_storage_service.dart';
-import 'package:borderhacks_client/viewmodels/home_viewmodel.dart';
 import 'package:borderhacks_client/viewmodels/landing_viewmodel.dart';
 import 'package:borderhacks_client/viewmodels/auth_viewmodel.dart';
 import 'package:borderhacks_client/viewmodels/startup_viewmodel.dart';
@@ -21,6 +20,5 @@ Future<void> setupLocator() async {
 
   locator.registerFactory(() => StartUpViewModel());
   locator.registerFactory(() => AuthViewModel());
-  locator.registerFactory(() => HomeViewModel());
   locator.registerFactory(() => LandingViewModel());
 }
