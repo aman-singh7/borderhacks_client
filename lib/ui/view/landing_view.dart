@@ -29,9 +29,18 @@ class _LandingViewState extends State<LandingView> {
 
   AppBar _buildAppBar(LandingViewModel model) {
     return AppBar(
-      title: (model.selectedIndex == 1)
-          ? const Text('My Appointments')
-          : const Text('Home'),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          (model.selectedIndex == 1)
+              ? const Text('My Appointments')
+              : const Text('Home'),
+          IconButton(
+            onPressed: () => model.signout(),
+            icon: const Icon(Icons.exit_to_app),
+          )
+        ],
+      ),
       backgroundColor: AppTheme.blue,
     );
   }

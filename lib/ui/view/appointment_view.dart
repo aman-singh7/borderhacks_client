@@ -113,7 +113,12 @@ class _AppointmentViewState extends State<AppointmentView> {
                     ),
                     ElevatedButton(
                       onPressed: () {},
-                      child: const Text("Confirm Booking"),
+                      child: const Text(
+                        "Confirm Booking",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -156,7 +161,7 @@ class _AppointmentViewState extends State<AppointmentView> {
                   style: AppTheme.h2.copyWith(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),
