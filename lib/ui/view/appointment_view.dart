@@ -17,7 +17,7 @@ class _AppointmentViewState extends State<AppointmentView> {
   @override
   Widget _buildCoverImage() {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/doctor-background.jpg'),
           fit: BoxFit.cover,
@@ -36,20 +36,20 @@ class _AppointmentViewState extends State<AppointmentView> {
             backgroundColor: Colors.white,
             child: CircleAvatar(
               radius: 58.r,
-              backgroundImage: AssetImage('assets/images/default.png'),
+              backgroundImage: const AssetImage('assets/images/default.png'),
             ),
           ),
           Text(
             name,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           Text(
             qual,
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 18),
           ),
           Text(
             spec,
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 18),
           ),
         ],
       ),
