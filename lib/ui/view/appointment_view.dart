@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import 'base_view.dart';
 import 'package:borderhacks_client/app_theme.dart';
 import 'package:borderhacks_client/models/doctor_model.dart';
@@ -14,9 +16,18 @@ class AppointmentView extends StatefulWidget {
 }
 
 class _AppointmentViewState extends State<AppointmentView> {
+  var date = DateTime.now();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _ageEditingController = TextEditingController();
   final TextEditingController _nameEditingController = TextEditingController();
+  final Doctor doctor = Get.arguments;
+
+  String? validate(String? value) {
+    if (value == null) {
+      return 'Required Field';
+    }
+    return null;
+  }
 
   Widget _buildCoverImage() {
     return Container(
@@ -70,7 +81,7 @@ class _AppointmentViewState extends State<AppointmentView> {
     );
   }
 
-  Widget _buildInfo(IconData leading, String field, String value) {
+  Widget _buildInfo(IconData leading, String field, dynamic value) {
     return ListTile(
       leading: Icon(
         leading,
@@ -80,7 +91,7 @@ class _AppointmentViewState extends State<AppointmentView> {
     );
   }
 
-  Widget _buildProfileInfo(String address, String time, String fee) {
+  Widget _buildProfileInfo(String address, String time, int fee) {
     return ListView(
       children: [
         _buildInfo(Icons.timer, 'Timing', time),
@@ -90,7 +101,7 @@ class _AppointmentViewState extends State<AppointmentView> {
     );
   }
 
-  Future<void> _showDialog(BuildContext context) async {
+  Future<void> _showDialog(BuildContext context, LandingViewModel model) async {
     return await showDialog(
       context: context,
       builder: (context) {
@@ -106,14 +117,46 @@ class _AppointmentViewState extends State<AppointmentView> {
                     TextFormField(
                       controller: _nameEditingController,
                       decoration: const InputDecoration(hintText: "Enter name"),
+                      validator: validate,
                     ),
                     TextFormField(
                       controller: _ageEditingController,
                       decoration: const InputDecoration(hintText: "Enter age"),
+                      validator: validate,
+                    ),
+                    ListTile(
+                      onTap: () async {
+                        var res = await showDatePicker(
+                          context: context,
+                          initialDate: date,
+                          firstDate: date,
+                          lastDate: date.add(const Duration(days: 10)),
+                        );
+                        if (res != null) {
+                          setState(() {
+                            date = res;
+                          });
+                        }
+                      },
+                      title: const Text('Date'),
+                      subtitle: Text(DateFormat('dd-MM-yyyy').format(date)),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
-                      child: const Text("Confirm Booking"),
+                      onPressed: () async {
+                        await model.addAppointment(
+                          _nameEditingController.text.trim(),
+                          int.parse(_ageEditingController.text.trim()),
+                          date,
+                          doctor.id,
+                        );
+                        Get.back();
+                      },
+                      child: const Text(
+                        "Confirm Booking",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -127,7 +170,6 @@ class _AppointmentViewState extends State<AppointmentView> {
 
   @override
   Widget build(BuildContext context) {
-    final Doctor doctor = Get.arguments;
     return BaseView<LandingViewModel>(
       builder: (context, model, child) => Scaffold(
         body: Column(
@@ -149,14 +191,14 @@ class _AppointmentViewState extends State<AppointmentView> {
               padding: EdgeInsets.only(bottom: 50.h),
               child: ElevatedButton(
                 onPressed: () async {
-                  await _showDialog(context);
+                  await _showDialog(context, model);
                 },
                 child: Text(
                   'Book Appointment',
                   style: AppTheme.h2.copyWith(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),

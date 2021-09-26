@@ -1,12 +1,9 @@
 class Doctor {
-  String appointmentFee,
-      clinicAddress,
-      clinicTime,
-      name,
-      qualifications,
-      specialization;
+  int appointmentFee;
+  String clinicAddress, clinicTime, name, qualifications, specialization, id;
 
   Doctor({
+    required this.id,
     required this.appointmentFee,
     required this.clinicAddress,
     required this.clinicTime,
