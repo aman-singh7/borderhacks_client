@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             GetPage(name: '/landing', page: () => const LandingView()),
             GetPage(name: '/appointment', page: () => const AppointmentView()),
           ],
-          initialRoute: '/',
+          initialRoute: '/landing',
           theme: ThemeData(
             fontFamily: 'OpenSans',
             backgroundColor: AppTheme.grey1,
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
               headline5: AppTheme.h5,
             ),
           ),
-          home: const StartUpView(),
+          // home: const StartUpView(),
         );
       },
     );
