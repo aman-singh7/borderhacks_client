@@ -92,9 +92,10 @@ class _AppointmentViewState extends State<AppointmentView> {
 
   Future<void> _showDialog(BuildContext context) async {
     return await showDialog(
-        context: context,
-        builder: (context) {
-          return StatefulBuilder(builder: (context, setState) {
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
             return AlertDialog(
               title: const Text("Enter Patient Details"),
               content: Form(
@@ -118,29 +119,11 @@ class _AppointmentViewState extends State<AppointmentView> {
                 ),
               ),
             );
-          });
-        });
+          },
+        );
+      },
+    );
   }
-
-  @override
-  Widget build(BuildContext context) {
-    final Doctor doctor = Get.arguments;
-    return BaseView<LandingViewModel>(
-      builder: (context, model, child) => Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: _buildHeader(
-                  doctor.name, doctor.qualifications, doctor.specialization),
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                margin: EdgeInsets.only(top: 120.h),
-                child: _buildProfileInfo(doctor.clinicAddress,
-                    doctor.clinicTime, doctor.appointmentFee),
-              ),
 
   @override
   Widget build(BuildContext context) {
