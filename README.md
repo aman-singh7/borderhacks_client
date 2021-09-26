@@ -1,16 +1,17 @@
-# borderhacks_client
+# Borderhacks
 
-A new Flutter project.
+![CI](https://github.com/aman-singh7/borderhacks_client/actions/workflows/ci.yml/badge.svg?branch=master) ![Framework: Flutter](https://img.shields.io/badge/Framework-Flutter-blue.svg)
 
-## Getting Started
+## Introduction
 
-This project is a starting point for a Flutter application.
+A Flutter Application for taking appointment from the doctor and keeping track of their status
 
-A few resources to get you started if this is your first Flutter project:
+This is the client version of the App which will be used for taking appointment from the doctors registered on the app and keeping track of their status. you can also find the admin side app [here](https://github.com/anand817/borderhacks_admin.git)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Features
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- take appointments from the doctors registered on the app
+
+- get automatically updated about the status of the appointment
+
+## Screenshots
