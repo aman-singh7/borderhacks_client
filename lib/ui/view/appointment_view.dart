@@ -14,7 +14,6 @@ class AppointmentView extends StatefulWidget {
 }
 
 class _AppointmentViewState extends State<AppointmentView> {
-  @override
   Widget _buildCoverImage() {
     return Container(
       decoration: const BoxDecoration(
