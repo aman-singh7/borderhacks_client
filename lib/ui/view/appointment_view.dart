@@ -14,6 +14,9 @@ class AppointmentView extends StatefulWidget {
 }
 
 class _AppointmentViewState extends State<AppointmentView> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameEditingController = TextEditingController();
+  final TextEditingController _ageEditingController = TextEditingController();
   Widget _buildCoverImage() {
     return Container(
       decoration: const BoxDecoration(
@@ -86,6 +89,38 @@ class _AppointmentViewState extends State<AppointmentView> {
     );
   }
 
+  Future<void> _showDialog(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              title: const Text("Enter Patient Details"),
+              content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextFormField(
+                      controller: _nameEditingController,
+                      decoration: const InputDecoration(hintText: "Enter name"),
+                    ),
+                    TextFormField(
+                      controller: _ageEditingController,
+                      decoration: const InputDecoration(hintText: "Enter age"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text("Confirm Booking"),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final Doctor doctor = Get.arguments;
@@ -109,7 +144,9 @@ class _AppointmentViewState extends State<AppointmentView> {
             Padding(
               padding: EdgeInsets.only(bottom: 50.h),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await _showDialog(context);
+                },
                 child: Text(
                   'Book Appointment',
                   style: AppTheme.h2.copyWith(
@@ -124,5 +161,19 @@ class _AppointmentViewState extends State<AppointmentView> {
         ),
       ),
     );
+  }
+}
+
+class _SystemPadding extends StatelessWidget {
+  final Widget child;
+  _SystemPadding({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
+    return AnimatedContainer(
+        padding: mediaQuery.viewInsets,
+        duration: const Duration(milliseconds: 300),
+        child: child);
   }
 }
