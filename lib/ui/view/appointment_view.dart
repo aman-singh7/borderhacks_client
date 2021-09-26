@@ -15,8 +15,9 @@ class AppointmentView extends StatefulWidget {
 
 class _AppointmentViewState extends State<AppointmentView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameEditingController = TextEditingController();
   final TextEditingController _ageEditingController = TextEditingController();
+  final TextEditingController _nameEditingController = TextEditingController();
+
   Widget _buildCoverImage() {
     return Container(
       decoration: const BoxDecoration(
@@ -161,19 +162,5 @@ class _AppointmentViewState extends State<AppointmentView> {
         ),
       ),
     );
-  }
-}
-
-class _SystemPadding extends StatelessWidget {
-  final Widget child;
-  _SystemPadding({required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
-    return AnimatedContainer(
-        padding: mediaQuery.viewInsets,
-        duration: const Duration(milliseconds: 300),
-        child: child);
   }
 }
